@@ -27,7 +27,7 @@
 
 __global__ void mysgemmNT(grid_launch_parm lp, const float *A, int lda, const float *B, int ldb, float* C, int ldc, int k, float alpha, float beta )
 {
-  double c = 0.0f;
+  float c = 0.0f;
   int m = hipBlockIdx_x * hipBlockDim_x + hipThreadIdx_x;
   int n = hipBlockIdx_y * hipBlockDim_y + hipThreadIdx_y;
 
