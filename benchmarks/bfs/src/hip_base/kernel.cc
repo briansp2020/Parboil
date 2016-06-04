@@ -89,11 +89,19 @@ BFS_kernel(grid_launch_parm lp,
     g_color[pid] = BLACK;
     int cur_cost = g_cost[pid];
     //into
+#ifdef USE_TEXTURES
     Node cur_node = tex1Dfetch(g_graph_node_ref,pid);
+#else
+    Node cur_node = g_graph_nodes[pid];
+#endif
     for(int i=cur_node.x; i<cur_node.y + cur_node.x; i++)//visit each neighbor of the
       //current frontier node.
     {
+#ifdef USE_TEXTURES
       Edge cur_edge = tex1Dfetch(g_graph_edge_ref,i);
+#else
+      Edge cur_edge = g_graph_edges[i];
+#endif
       int id = cur_edge.x;
       int cost = cur_edge.y;
       cost += cur_cost;

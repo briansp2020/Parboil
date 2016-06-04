@@ -30,7 +30,7 @@
 
 FILE *fp;
 
-//Somehow "hipMemset" does not work. So I use hipMemcpy of constant variables for initialization
+//Cuda version uses cudaMemcpy. So I use hipMemcpy of constant variables for initialization
 const int h_top = 1;
 const int zero = 0;
 
@@ -126,9 +126,11 @@ int main(int argc, char** argv)
   hipMemcpy( d_color, color, sizeof(int)*num_of_nodes, hipMemcpyHostToDevice);
   hipMemcpy( d_cost, h_cost, sizeof(int)*num_of_nodes, hipMemcpyHostToDevice);
 
+#ifdef USE_TEXTURES
   //bind the texture memory with global memory
   hipBindTexture(0,g_graph_node_ref,d_graph_nodes, sizeof(Node)*num_of_nodes);
   hipBindTexture(0,g_graph_edge_ref,d_graph_edges,sizeof(Edge)*num_of_edges);
+#endif
 
   printf("Starting GPU kernel\n");
   (hipDeviceSynchronize());
@@ -188,8 +190,10 @@ int main(int argc, char** argv)
   // copy result from device to host
   hipMemcpy(h_cost, d_cost, sizeof(int)*num_of_nodes, hipMemcpyDeviceToHost);
   hipMemcpy(color, d_color, sizeof(int)*num_of_nodes, hipMemcpyDeviceToHost);
+#ifdef USE_TEXTURES
   hipUnbindTexture(&g_graph_node_ref);
   hipUnbindTexture(&g_graph_edge_ref);
+#endif
 
   hipFree(d_graph_nodes);
   hipFree(d_graph_edges);
