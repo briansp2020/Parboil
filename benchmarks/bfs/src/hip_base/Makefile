@@ -2,15 +2,15 @@
 
 SRCDIR_OBJS=main.o kernel.o
 LANGUAGE=hip
-APP_CFLAGS=-ffast-math -D __HIP_PLATFORM_HCC__
+APP_CFLAGS=-ffast-math -O2 -D __HIP_PLATFORM_HCC__
 APP_LDFLAGS=-lm -lstdc++
 
 # To use slow (but precise) math routines
 ifeq ($(slowmath), 1)
 	APP_CFLAGS += -fp-model precise
 else
-	APP_CFLAGS += -ffast-math
-	APP_CXXFLAGS += -ffast-math
+	APP_CFLAGS += -ffast-math -O2
+	APP_CXXFLAGS += -ffast-math -O2
 	APP_CUDACFLAGS += -Xptxas -dlcm=cg -arch compute_12 --use_fast_math
 endif
 

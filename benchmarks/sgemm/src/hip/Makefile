@@ -3,5 +3,5 @@
 LANGUAGE=hip
 SRCDIR_OBJS=main.o io.o sgemm_kernel.o #compute_gold.o
 APP_HIPLDFLAGS=
-APP_CFLAGS=-ffast-math -O3 -D __HIP_PLATFORM_HCC__
-APP_CXXFLAGS=-ffast-math -O3
+APP_CFLAGS=-ffast-math -O2 -D __HIP_PLATFORM_HCC__
+APP_CXXFLAGS=-ffast-math -O2

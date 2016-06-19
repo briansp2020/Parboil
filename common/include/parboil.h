@@ -311,6 +311,7 @@ pb_PrintPlatformInfo(pb_Context* c);
 void
 perf_init();
 
+#ifndef __HIP_PLATFORM_HCC__
 #define MEASURE_KERNEL_TIME
 
 #ifdef MEASURE_KERNEL_TIME
@@ -336,6 +337,7 @@ void pb_sig_short(char*, short*, int);
 void pb_sig_int(char*, int*, int);
 void pb_sig_uchar(char*, int*, unsigned int);
 void pb_sig_clmem(char*, cl_command_queue, cl_mem, int);
+#endif
 
 #ifdef __cplusplus
 }
