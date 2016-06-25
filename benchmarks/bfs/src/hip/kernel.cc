@@ -311,7 +311,7 @@ BFS_kernel_multi_blk_inGPU(grid_launch_parm lp,
   int kt = atomicOr(global_kt,0);// the total count of GPU global synchronization 
   while (1){//propagate through multiple levels
     if(hipThreadIdx_x < NUM_BIN){
-      local_q.reset(hipThreadIdx_x, blockDim);
+      local_q.reset(hipThreadIdx_x);
     }
     if(hipThreadIdx_x == 0)
       no_of_nodes_sm = no_of_nodes_vol; 
@@ -408,7 +408,7 @@ BFS_kernel(grid_launch_parm lp,
   __shared__ int shift;
 
   if(hipThreadIdx_x < NUM_BIN){
-    local_q.reset(hipThreadIdx_x, blockDim);
+    local_q.reset(hipThreadIdx_x);
   }
   __syncthreads();
 

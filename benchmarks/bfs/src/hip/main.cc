@@ -28,12 +28,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <hip_runtime.h>
 #include <parboil.h>
 #include <deque>
 #include <iostream>
 
 #include "config.h"
-#include "hip/hip_runtime.h"
 #include "kernel.h"
 
 FILE *fp;
