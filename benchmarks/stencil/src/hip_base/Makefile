@@ -3,7 +3,7 @@
 LANGUAGE=hip
 SRCDIR_OBJS=main.o file.o kernels.o
 APP_LDFLAGS= -lm -lstdc++
-APP_CFLAGS=-D__HIP_PLATFORM_HCC__
+APP_CFLAGS=-ffast-math -O2 -D__HIP_PLATFORM_HCC__
 
 # To use slow (but precise) math routines
 ifeq ($(slowmath), 1)

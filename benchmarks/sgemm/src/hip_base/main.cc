@@ -17,10 +17,9 @@
 #include <sys/time.h>
 #include <malloc.h>
 #include <vector>
+#include <hip_runtime.h>
 #include <parboil.h>
 #include <iostream>
-//#include "sgemm_kernel.cu"
-#include <hip_runtime.h>
 
 extern void basicSgemm( char transa, char transb, int m, int n, int k, float alpha, const float *A, int lda, const float *B, int ldb, float beta, float *C, int ldc );
 

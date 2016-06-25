@@ -5,6 +5,7 @@
  *cr                         All Rights Reserved
  *cr
  ***************************************************************************/
+#include <hip_runtime.h>
 #include <parboil.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,7 +13,6 @@
 #include "file.h"
 #include "common.h"
 #include "hiperr.h"
-#include "hip/hip_runtime.h"
 
 __global__ void naive_kernel(grid_launch_parm lp, float c0,float c1,float *A0,float *Anext, int nx, int ny, int nz);
 
