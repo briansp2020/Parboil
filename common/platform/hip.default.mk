@@ -1,13 +1,10 @@
 # (c) 2007 The Board of Trustees of the University of Illinois.
 
-# Cuda-related definitions common to all benchmarks
+# HIP-related definitions common to all benchmarks
 
 ########################################
 # Variables
 ########################################
-
-# c.default is the base along with CUDA configuration in this setting
-include $(PARBOIL_ROOT)/common/platform/c.default.mk
 
 # Paths
 HIPHOME=/opt/rocm/hip
@@ -16,6 +13,9 @@ HIPHOME=/opt/rocm/hip
 HIPCC=$(HIPHOME)/bin/hipcc
 HIPLINK=$(HIPHOME)/bin/hipcc
 #CC=/opt/rocm/hcc/bin/clang
+CC = $(HIPCC)
+CXX = $(HIPCC)
+LINKER = $(HIPLINK)
 
 # Flags
 PLATFORM_HIPCFLAGS=-O3

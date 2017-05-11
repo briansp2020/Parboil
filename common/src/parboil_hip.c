@@ -139,7 +139,7 @@ consume_argument(struct argparse *ap)
 struct pb_Parameters *
 pb_ReadParameters(int *_argc, char **argv)
 {
-  char *err_message;
+  char const *err_message;
   struct argparse ap;
   struct pb_Parameters *ret =
     (struct pb_Parameters *)malloc(sizeof(struct pb_Parameters));
@@ -267,7 +267,7 @@ static void insert_marker(struct pb_TimerSet* tset, enum pb_TimerID timer)
     *new_event = (struct pb_async_time_marker_list *) 
       			malloc(sizeof(struct pb_async_time_marker_list));
     (*new_event)->marker = malloc(sizeof(hipEvent_t));
-    hipEventCreate((*new_event)->marker);
+    hipEventCreate((hipEvent_t *)(*new_event)->marker);
     (*new_event)->next = NULL;
   }
 
@@ -289,7 +289,7 @@ static void insert_submarker(struct pb_TimerSet* tset, char *label, enum pb_Time
     *new_event = (struct pb_async_time_marker_list *) 
       			malloc(sizeof(struct pb_async_time_marker_list));
     (*new_event)->marker = malloc(sizeof(hipEvent_t));
-    hipEventCreate((*new_event)->marker);
+    hipEventCreate((hipEvent_t *)(*new_event)->marker);
 
     (*new_event)->next = NULL;
   }
@@ -552,7 +552,7 @@ pb_AddSubTimer(struct pb_TimerSet *timers, char *label, enum pb_TimerID pb_Categ
   int len = strlen(label);
     
   subtimer->label = (char *) malloc (sizeof(char)*(len+1));
-  sprintf(subtimer->label, "%s\0", label);
+  sprintf(subtimer->label, "%s", label);
   
   pb_ResetTimer(&subtimer->timer);
   subtimer->next = NULL;

@@ -1,4 +1,3 @@
-#include "hip/hip_runtime.h"
 /***************************************************************************
  *cr
  *cr            (C) Copyright 2010 The Board of Trustees of the
@@ -50,7 +49,7 @@ for i < M ; i += 64   // thread block.x
 #define TILE_TB_HEIGHT 8
 #define TILE_M (TILE_N*TILE_TB_HEIGHT)
 
-__global__ void mysgemmNT(grid_launch_parm lp, const float *A, int lda, const float *B, int ldb, float* C, int ldc, int k, float alpha, float beta )
+__global__ void mysgemmNT(hipLaunchParm lp, const float *A, int lda, const float *B, int ldb, float* C, int ldc, int k, float alpha, float beta )
 {
     // Partial results 
     float c[TILE_N];

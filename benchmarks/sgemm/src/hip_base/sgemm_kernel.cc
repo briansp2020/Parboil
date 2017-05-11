@@ -25,7 +25,7 @@
 // Parameters of tile sizes
 #define TILE_SZ 16 
 
-__global__ void mysgemmNT(grid_launch_parm lp, const float *A, int lda, const float *B, int ldb, float* C, int ldc, int k, float alpha, float beta )
+__global__ void mysgemmNT(hipLaunchParm lp, const float *A, int lda, const float *B, int ldb, float* C, int ldc, int k, float alpha, float beta )
 {
   float c = 0.0f;
   int m = hipBlockIdx_x * hipBlockDim_x + hipThreadIdx_x;

@@ -17,7 +17,7 @@
 #include <sys/time.h>
 #include <malloc.h>
 #include <vector>
-#include <hip_runtime.h>
+#include <hip/hip_runtime.h>
 #include <parboil.h>
 #include <iostream>
 
